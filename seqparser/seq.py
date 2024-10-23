@@ -2,7 +2,8 @@
 
 def transcribe(seq: str) -> str:
     """
-    Transcribes a given DNA sequence to RNA by replacing all thymine ('T') bases with uracil ('U').
+    Transcribes a given DNA sequence to RNA by converting all bases to their RNA complements:
+    A -> U, T -> A, G -> C, C -> G.
 
     Parameters:
     seq (str): The DNA sequence to be transcribed.
@@ -10,7 +11,13 @@ def transcribe(seq: str) -> str:
     Returns:
     str: The transcribed RNA sequence.
     """
-    return seq.replace('T', 'U')
+    transcription_map = {
+        'A': 'U',
+        'T': 'A',
+        'G': 'C',
+        'C': 'G'
+    }
+    return ''.join(transcription_map[base] for base in seq)
 
 
 def reverse_transcribe(seq: str) -> str:

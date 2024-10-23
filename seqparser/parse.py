@@ -1,5 +1,5 @@
 import io
-from typing import Tuple, Union
+from typing import Tuple, Union, Generator
 
 class Parser:
     """
@@ -13,14 +13,9 @@ class Parser:
 
     def __iter__(self):
         with open(self.filename, "r") as f_obj:
-            while True:
-                try:
-                    rec = self.get_record(f_obj)
-                    yield rec
-                except StopIteration:
-                    break
+            yield from self._get_record(f_obj)
 
-    def _get_record(self, f_obj: io.TextIOWrapper) -> Union[Tuple[str, str], Tuple[str, str, str]]:
+    def _get_record(self, f_obj: io.TextIOWrapper) -> Generator[Union[Tuple[str, str], Tuple[str, str, str]], None, None]:
         raise NotImplementedError(
             """
             This function is not meant to be called by the Parser Class.
@@ -33,7 +28,7 @@ class FastaParser(Parser):
     """
     Fasta Specific Parsing.
     """
-    def _get_record(self, f_obj: io.TextIOWrapper) -> Tuple[str, str]:
+    def _get_record(self, f_obj: io.TextIOWrapper) -> Generator[Tuple[str, str], None, None]:
         header = None
         sequence = []
 
@@ -41,16 +36,14 @@ class FastaParser(Parser):
             line = line.strip()
             if line.startswith(">"):
                 if header:
-                    return (header, ''.join(sequence))
+                    yield (header, ''.join(sequence))
                 header = line[1:]
                 sequence = []
             else:
                 sequence.append(line)
 
         if header:
-            return (header, ''.join(sequence))
-
-        raise StopIteration
+            yield (header, ''.join(sequence))
 
     def parse(self):
         """
@@ -66,17 +59,18 @@ class FastqParser(Parser):
     """
     Fastq Specific Parsing
     """
-    def _get_record(self, f_obj: io.TextIOWrapper) -> Tuple[str, str, str]:
-        header = f_obj.readline().strip()
-        if not header:
-            raise StopIteration
+    def _get_record(self, f_obj: io.TextIOWrapper) -> Generator[Tuple[str, str, str], None, None]:
+        while True:
+            header = f_obj.readline().strip()
+            if not header:
+                break
 
-        sequence = f_obj.readline().strip()
-        plus = f_obj.readline().strip()
-        quality = f_obj.readline().strip()
+            sequence = f_obj.readline().strip()
+            plus = f_obj.readline().strip()
+            quality = f_obj.readline().strip()
 
-        if header.startswith("@") and plus == "+":
-            return (header[1:], sequence, quality)
+            if header.startswith("@") and plus == "+":
+                yield (header[1:], sequence, quality)
 
     def parse(self):
         """

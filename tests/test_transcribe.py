@@ -1,9 +1,9 @@
-# write tests for transcribes
+# Tests for transcription functions
 
-from seqparser import (
-        transcribe,
-        reverse_transcribe)
-
+from seqparser.seq import (
+    transcribe,
+    reverse_transcribe
+)
 
 def test_freebie_transcribe_1():
     """
@@ -12,7 +12,6 @@ def test_freebie_transcribe_1():
     """
     assert True
 
-
 def test_freebie_transcribe_2():
     """
     This too is a freebie
@@ -20,18 +19,28 @@ def test_freebie_transcribe_2():
     """
     assert 1 != 2
 
-        
 def test_transcribe():
     """
-    TODO: Write your unit test for the
-    transcribe function here.
+    Unit test for the transcribe function.
     """
-    pass
+    # Test cases for transcribe function
+    input_sequence = "ACTG"
+    expected_output = "UGAC"  # Transcription: A -> U, C -> G, T -> A, G -> C
+    assert transcribe(input_sequence) == expected_output
 
+    input_sequence = "AAGGTTCC"
+    expected_output = "UUCCAAGG"  # Transcription: A -> U, G -> C, T -> A, C -> G
+    assert transcribe(input_sequence) == expected_output
 
 def test_reverse_transcribe():
     """
-    TODO: Write your unit test for the
-    reverse transcribe function here.
+    Unit test for the reverse transcribe function.
     """
-    pass
+    # Test cases for reverse transcribe function
+    input_sequence = "ACTG"
+    expected_output = "CAGU"  # Transcribe and then reverse: A -> U, C -> G, T -> A, G -> C, reversed
+    assert reverse_transcribe(input_sequence) == expected_output
+
+    input_sequence = "AAGGTTCC"
+    expected_output = "GGAACCUU"  # Transcribe and then reverse: A -> U, G -> C, T -> A, C -> G, reversed
+    assert reverse_transcribe(input_sequence) == expected_output
