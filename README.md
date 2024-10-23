@@ -24,5 +24,7 @@ No Editing or Version Control Required:
 You do not need to modify the code or use any version control commands such as Git. The purpose of this project is simply to allow users to input DNA sequences and use the provided functionality to reverse transcribe them.
 
 Best of luck
+
 **Youssef Abodahab,**
+
 AICD3 M.S Student
