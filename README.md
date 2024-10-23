@@ -1,4 +1,6 @@
-**instructions for Using This Project**
+**Instructions for Using This Project**
+
+
 **1. Clone the Repository:**
 First, you need to clone this project repository. To do this, go to your terminal and run the following command: "git clone https://github.com/YourUsername/Assignment-1.git". Replace YourUsername with your GitHub username or the repository URL to clone the project to your local system.
 
