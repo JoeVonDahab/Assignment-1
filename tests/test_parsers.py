@@ -50,7 +50,14 @@ def test_FastqParser():
     # Update the expected sequence to match the actual content of test.fq
     expected_sequence = "TGTGGTCGTATAGTTATTGTCATAAATTACACAGAATCGCGATTCTCCGCGTCCACCAATCTTAGTGCACCACAGCATCGACCCGATTTATGACGCTGAG"
     assert sequences["seq0"]["sequence"] == expected_sequence
-    
+
+    assert "seq0" in sequences
+    # Update the expected sequence to match the actual content of test.fq
+    expected_sequence = "TGTGGTCGZYTATAGTTATTGTCATAAATTACACAGAATCGCGATTCTCCGCGTCCACCAATCTTAGTGCACCACAGCATCGACCCGATTTATGACGCTGAG"
+    assert sequences["seq0"]["sequence"] != expected_sequence
+
+
+
     # Update the expected quality to match the actual content of test.fq
     expected_quality = "*540($=*,=.062565,2>'487')!:&&6=,6,*7>:&132&83*8(58&59>'8!;28<94,0*;*.94**:9+7\"94(>7='(!5\"2/!%\"4#32="
     assert sequences["seq0"]["quality"] == expected_quality

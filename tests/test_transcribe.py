@@ -29,6 +29,10 @@ def test_transcribe():
     assert transcribe(input_sequence) == expected_output
 
     input_sequence = "AAGGTTCC"
+    expected_output = "UGCCAAGG"  # Transcription: A -> U, G -> C, T -> A, C -> G
+    assert transcribe(input_sequence) != expected_output
+
+    input_sequence = "AAGGTTCC"
     expected_output = "UUCCAAGG"  # Transcription: A -> U, G -> C, T -> A, C -> G
     assert transcribe(input_sequence) == expected_output
 
@@ -40,6 +44,10 @@ def test_reverse_transcribe():
     input_sequence = "ACTG"
     expected_output = "CAGU"  # Transcribe and then reverse: A -> U, C -> G, T -> A, G -> C, reversed
     assert reverse_transcribe(input_sequence) == expected_output
+
+    input_sequence = "ACTG"
+    expected_output = "CGGU"  # Transcribe and then reverse: A -> U, C -> G, T -> A, G -> C, reversed
+    assert reverse_transcribe(input_sequence) != expected_output
 
     input_sequence = "AAGGTTCC"
     expected_output = "GGAACCUU"  # Transcribe and then reverse: A -> U, G -> C, T -> A, C -> G, reversed
