@@ -2,7 +2,7 @@
 
 
 **1. Clone the Repository:**
-First, you need to clone this project repository. To do this, go to your terminal and run the following command: "git clone https://github.com/YourUsername/Assignment-1.git". Replace YourUsername with your GitHub username or the repository URL to clone the project to your local system.
+First, you need to clone this project repository. To do this, you have several options: You can directly clone/download the repository. Or you can fork it using on github first and then go to your terminal, and run the following command: "git clone https://github.com/YourUsername/Assignment-1.git." Replace Your Username with your GitHub username or the repository URL to clone the project to your local system.
 
 **2. Set Up a Virtual Environment:**
 Next, you will need to set up a Python virtual environment to keep dependencies organized and isolated. Use Conda to create and activate a new environment by running the following commands:
