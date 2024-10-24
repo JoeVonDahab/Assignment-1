@@ -56,6 +56,8 @@ def test_FastqParser():
     expected_sequence = "TGTGGTCGZYTATAGTTATTGTCATAAATTACACAGAATCGCGATTCTCCGCGTCCACCAATCTTAGTGCACCACAGCATCGACCCGATTTATGACGCTGAG"
     assert sequences["seq0"]["sequence"] != expected_sequence
 
+    
+
 
 
     # Update the expected quality to match the actual content of test.fq
